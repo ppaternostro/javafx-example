@@ -150,16 +150,6 @@ public class SampleController
       {
         Post createdPost = client.createPost(newPost);
 
-        /*
-         * The POST endpoint does not return a fully populated object, just the
-         * newly created post id. Therefore, we need to set the missing created
-         * post object values from the new post object. It is what it is with a
-         * free, fake API. ¯\_(ツ)_/¯
-         */
-        createdPost.setBody(newPost.getBody());
-        createdPost.setTitle(newPost.getTitle());
-        createdPost.setUserId(newPost.getUserId());
-
         table.getItems().add(index, createdPost);
       }
       catch (IOException | InterruptedException | RestApiException e)

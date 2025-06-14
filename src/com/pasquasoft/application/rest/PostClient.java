@@ -73,7 +73,7 @@ public class PostClient
 
   public Post createPost(Post post) throws IOException, InterruptedException
   {
-    HttpRequest request = HttpRequest.newBuilder().uri(URI.create(BASE_URL))
+    HttpRequest request = HttpRequest.newBuilder().header("Content-Type", "application/json").uri(URI.create(BASE_URL))
         .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(post))).build();
 
     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -89,7 +89,8 @@ public class PostClient
 
   public Post updatePost(Post post) throws IOException, InterruptedException
   {
-    HttpRequest request = HttpRequest.newBuilder().uri(URI.create(BASE_URL + post.getId()))
+    HttpRequest request = HttpRequest.newBuilder().header("Content-Type", "application/json")
+        .uri(URI.create(BASE_URL + post.getId()))
         .PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(post))).build();
 
     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
