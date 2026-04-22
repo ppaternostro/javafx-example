@@ -49,8 +49,34 @@ Another issue uncovered with the newly created posts occurs when editing the edi
 
 Despite the issues stemming from using the free, fake JSON Placeholder API, this application is illustrative of using JavaFx as your GUI.
 
-# Resources
+## Building
+Run the below command from a terminal window in the application's root folder to build the application.
+
+> mvnw package (use **./mvnw** for MacOS/Linux based OSes)
+
+The command will create the following two JAR files in the project's root folder **target** directory.
+
+- javafx-example-0.0.1-SNAPSHOT.jar
+- javafx-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
+The **javafx-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar** file is an executable JAR that includes all the project's dependencies. 
+
+Since Java 11, JavaFX has been unbundled from the standard Java Development Kit (JDK). Therefore, running the JavaFX application via the executable JAR requires external dependencies or a JavaFX-integrated JVM. To download a JavaFX-integrated JVM you can use [SDKMAN!](https://sdkman.io/). JavaFX-integrated JVMs will contain **fx** as part of the version and identifier. Once a JavaFX-integrated JVM is installed, type the following from the terminal window to execute the application.
+
+> java -jar javafx-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
+If not using a JavaFX-integrated JVM you will need to download the JavaFX [external dependencies](https://gluonhq.com/products/javafx/) which includes platform-specific native binaries. After downloading and extracting the platform-specific **SDK** ZIP file, type the following from the terminal window to execute the application.
+
+> java --module-path PATH_TO_EXTRACTED_FX_LIB_FOLDER --add-modules javafx.controls,javafx.fxml -jar javafx-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
+where **PATH_TO_EXTRACTED_FX_LIB_FOLDER** is the **lib** folder location of the extracted ZIP file's contents. For example:
+
+> java --module-path $HOME/javafx-sdk-23.0.1/lib --add-modules javafx.controls,javafx.fxml -jar javafx-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
+
+## Resources
 
 - [Getting Started with JavaFx](https://openjfx.io/openjfx-docs/#introduction)
 - [Scene Builder](https://gluonhq.com/products/scene-builder)
 - [Learn JavaFx Programming](https://www.youtube.com/playlist?list=PL3bGLnkkGnuUQemxQ3ojPcuMt5_d8B5py)
+- [Package a JavaFX Application as a Platform Specific Executable](https://inside.java/2023/11/14/package-javafx-native-exec/)
